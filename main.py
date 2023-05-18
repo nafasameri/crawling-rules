@@ -42,7 +42,6 @@ def save_csv(laws):
 
 
 
-# شروع حل مسئله
 laws = []
 try:
     pages = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/form/table[2]/tbody/tr/td[3]/select')
@@ -65,7 +64,7 @@ print('len laws:', len_law)
 try:
     for pagenumber in range(3, pagenumbers):
         next_page(pagenumber)
-        for i in range(1, len_law+1):
+        for i in range(100, len_law+1):
             link = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/form/table[1]/tbody[1]/tr[' + str(i) + ']/td[2]/a')
             date = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/form/table[1]/tbody[1]/tr[' + str(i) + ']/td[3]')
             authority = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/form/table[1]/tbody[1]/tr[' + str(i) + ']/td[4]')
@@ -97,5 +96,4 @@ except Exception as e:
 
 
 save_csv(laws)
-
 driver.quit()
