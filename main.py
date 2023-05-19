@@ -36,8 +36,8 @@ def next_page(pagenumber):
 def save_csv(laws):
     # print('laws:', laws)
     print('save data')
-    df = pd.DataFrame(laws, columns=['title', 'date', 'authority', 'link', 'desc'])
-    # , index=[law[0] for law in laws])
+    indexs = range(1, len(laws)+1)
+    df = pd.DataFrame(laws, columns=['title', 'date', 'authority', 'link', 'desc'], index=indexs)
     df.to_csv('laws.csv', encoding='utf-8-sig')
 
 
@@ -75,7 +75,7 @@ try:
 
             try:
                 treeText = driver.find_element(By.XPATH, '/html/body/div[1]/section/div/div/div[2]/div/form/div/table/tbody/tr/td[2]/div')
-                desc = treeText.text.replace("\n", " ")
+                desc = treeText.text.replace('\n', ' ').replace('  ', ' ')
             except Exception as e:
                 desc = ''
                 print('\nerror:', e)
