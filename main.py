@@ -1,8 +1,8 @@
+import time
+import random
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-import random
-import time
 
 
 url = 'https://qavanin.ir/'
@@ -62,9 +62,9 @@ print('len laws:', len_law)
 
 
 try:
-    for pagenumber in range(3, pagenumbers):
+    for pagenumber in range(6, pagenumbers):
         next_page(pagenumber)
-        for i in range(100, len_law+1):
+        for i in range(501, len_law+1):
             link = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/form/table[1]/tbody[1]/tr[' + str(i) + ']/td[2]/a')
             date = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/form/table[1]/tbody[1]/tr[' + str(i) + ']/td[3]')
             authority = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/form/table[1]/tbody[1]/tr[' + str(i) + ']/td[4]')
