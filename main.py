@@ -1,5 +1,5 @@
-import time
-import random
+# import time
+# import random
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -30,7 +30,7 @@ def next_page(pagenumber):
     nextnumber = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/form/table[2]/tbody/tr/td[1]/select/option[' + str(pagenumber) + ']')
     next.click()
     nextnumber.click()
-    time.sleep(random.random().real)
+    # time.sleep(random.random().real)
 
 
 def save_csv(laws):
@@ -56,33 +56,33 @@ try:
 except Exception as e:
     len_law = 25
     pagenumbers = 6171
-    print('\nerror:', e)
+    # print('\nerror:', e)
 
 print('len laws:', len_law)
 
 
 try:
-    for pagenumber in range(6, pagenumbers):
+    for pagenumber in range(10, pagenumbers):
         next_page(pagenumber)
-        for i in range(501, len_law+1):
+        for i in range(601, len_law+1):
             link = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/form/table[1]/tbody[1]/tr[' + str(i) + ']/td[2]/a')
             date = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/form/table[1]/tbody[1]/tr[' + str(i) + ']/td[3]')
             authority = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/form/table[1]/tbody[1]/tr[' + str(i) + ']/td[4]')
 
             link.click()
             switch_to_end_tab()
-            time.sleep(random.random().real)
+            # time.sleep(random.random().real)
 
             try:
                 treeText = driver.find_element(By.XPATH, '/html/body/div[1]/section/div/div/div[2]/div/form/div/table/tbody/tr/td[2]/div')
                 desc = treeText.text.replace('\n', ' ').replace('  ', ' ')
             except Exception as e:
                 desc = ''
-                print('\nerror:', e)
+                # print('\nerror:', e)
 
             close_tabs()
             switch_to_end_tab()
-            time.sleep(random.random().real)
+            # time.sleep(random.random().real)
 
             law = [link.text, date.text, authority.text, link.get_attribute('href'), desc]
             print(law, i)
